@@ -2,35 +2,30 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "./Card";
 import SearchBar from "./SearchBar";
-import { useNavigate } from "react-router-dom";
-
-
-
 
 function Movies() {
   const [movies, setMovies] = useState(null);
   const [moviesCopy, setMoviesCopy] = useState(null);
   const [randomMovies, setRandomMovies] = useState(null);
-  const [titleRanking, setTitleRanking] = useState(false);
-  const navigate = useNavigate();
+  const [rangeValue, setRangeValue] = useState(50);
 
   useEffect(() => {
     async function getData() {
       let response = await axios.get(
         "https://imdb-api.com/en/API/Top250Movies/k_605jmszs"
       );
+      response.data.items.length = rangeValue;
       setMoviesCopy(response.data.items);
       setMovies(response.data.items);
     }
     getData();
-  }, []);
+  }, [rangeValue]);
 
   if (!movies) {
     return <p>Loading</p>;
   }
 
   //---------------------------- TITLE SORTING ---------------------------------------
-
   const handleTitleSorting = () => {
     let clone = JSON.parse(JSON.stringify(movies));
     clone.sort((a, b) => {
@@ -42,12 +37,10 @@ function Movies() {
         return 0;
       }
     });
-    setTitleRanking(true);
     setMoviesCopy(clone);
   };
 
   //---------------------------- SEARCH ---------------------------------------
-
   const handleSearch = (event) => {
     let searchedMovie = event.target.value;
     let filteredMovies = movies.filter((movie) => {
@@ -57,7 +50,6 @@ function Movies() {
   };
 
   //---------------------------- GET RANDOM MOVIE ---------------------------------------
-
   function handleRandomMovie() {
     let randomMovie = moviesCopy[Math.floor(Math.random() * moviesCopy.length)];
     setRandomMovies(randomMovie);
@@ -69,7 +61,6 @@ function Movies() {
   }
 
   //---------------------------- GO BACK TO RANKED LIST ---------------------------------------
-
   function handleRankSorting() {
     async function getData() {
       let response = await axios.get(
@@ -81,14 +72,31 @@ function Movies() {
     getData();
   }
 
+  //---------------------------- RANGE SELECTOR ---------------------------------------
+  function handleRange(event) {
+    event.preventDefault();
+    let newRangeValue = event.target.value;
+    setRangeValue(newRangeValue);
+  }
+
   return (
     <div className="movies">
       <SearchBar btnSearch={handleSearch} />
+      <div className="btn-container">
+        <button onClick={handleRankSorting}>1 - 250</button>
+        <button onClick={handleRandomMovie}>Get a random movie</button>
+        <button onClick={handleTitleSorting}>A - Z</button>
+      </div>
 
-      <button onClick={handleRankSorting}>1 - 250</button>
-      <button onClick={handleTitleSorting}>A - Z</button>
-
-      <button onClick={handleRandomMovie}>Get a random movie</button>
+      <div className="sort-container">
+        <input
+          type="range"
+          min="1"
+          max="250"
+          value={rangeValue}
+          onChange={handleRange}
+        />
+      </div>
       {randomMovies ? (
         <>
           <div>

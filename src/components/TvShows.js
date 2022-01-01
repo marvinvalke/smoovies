@@ -1,27 +1,25 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Card from "./Card";
 import SearchBar from "./SearchBar";
-import { useNavigate } from "react-router-dom";
 import CardTv from "./CardTv";
 
 function TvShows() {
   const [series, setSeries] = useState(null);
   const [seriesCopy, setSeriesCopy] = useState(null);
   const [randomSeries, setRandomSeries] = useState(null);
-  const [titleRanking, setTitleRanking] = useState(false);
-  const navigate = useNavigate();
+  const [rangeValue, setRangeValue] = useState(50);
 
   useEffect(() => {
     async function getData() {
       let response = await axios.get(
         "https://imdb-api.com/en/API/Top250TVs/k_605jmszs"
       );
+      response.data.items.length = rangeValue;
       setSeriesCopy(response.data.items);
       setSeries(response.data.items);
     }
     getData();
-  }, []);
+  }, [rangeValue]);
 
   if (!series) {
     return <p>Loading</p>;
@@ -40,7 +38,7 @@ function TvShows() {
         return 0;
       }
     });
-    setTitleRanking(true);
+
     setSeriesCopy(clone);
   };
 
@@ -78,16 +76,29 @@ function TvShows() {
     }
     getData();
   }
-
-
+  //---------------------------- RANGE SELECTOR ---------------------------------------
+  function handleRange(event) {
+    event.preventDefault();
+    let newRangeValue = event.target.value;
+    setRangeValue(newRangeValue);
+  }
 
   return (
-  <div className="movies">
-    <SearchBar btnSearch={handleSearch} />
-    <button onClick={handleRankSorting}>1 - 250</button>
+    <div className="movies">
+      <SearchBar btnSearch={handleSearch} />
+      <button onClick={handleRankSorting}>1 - 250</button>
       <button onClick={handleTitleSorting}>A - Z</button>
 
       <button onClick={handleRandomMovie}>Get a random Tv Show</button>
+      <div className="sort-container">
+        <input
+          type="range"
+          min="1"
+          max="250"
+          value={rangeValue}
+          onChange={handleRange}
+        />
+      </div>
       {randomSeries ? (
         <>
           <div>
@@ -118,8 +129,7 @@ function TvShows() {
           </ul>
         </>
       )}
-
-  </div>
+    </div>
   );
 }
 

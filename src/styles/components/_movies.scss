@@ -1,5 +1,6 @@
 .movies {
     .sort-container {
+      margin-top: 10px;
       display: grid;
       grid-template-columns: 20% 80%;
       padding: 8px;
@@ -40,5 +41,7 @@
     .movies-list {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
     }
+
   }

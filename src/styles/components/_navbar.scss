@@ -1,12 +1,14 @@
 .navbar{
     margin: 20px 0;
-    display: flex; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     a{
         margin: 10px;
         padding:10px;
         position: relative;
     }
-    .nav-active{
+    /* .nav-active{
         &::after {
             content: "";
             width: 85%;
@@ -17,5 +19,17 @@
             left: 50%;
             transform: translateX(-50%);
           }
+        
+    } */
+    .active{
+        color: $color-1;
+        font-size: 1.1em;
+        font-weight: bold;
     }
+
+    .home{
+        display: flex;
+    }
+
 }
+
