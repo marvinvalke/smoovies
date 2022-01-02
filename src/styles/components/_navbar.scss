@@ -1,16 +1,28 @@
 .navbar{
-    margin: 20px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: rgb(0, 0, 0);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+    padding: 0px 20px;
+
     a{
+        color: $color-2;
         margin: 10px;
         padding:10px;
         position: relative;
     }
-    /* .nav-active{
+    a:hover{
+        color: $color-1
+    }
+    
+    .active{
         &::after {
             content: "";
+            border-radius: 25px;
             width: 85%;
             height: 5px;
             background: $color-1;
@@ -19,12 +31,6 @@
             left: 50%;
             transform: translateX(-50%);
           }
-        
-    } */
-    .active{
-        color: $color-1;
-        font-size: 1.1em;
-        font-weight: bold;
     }
 
     .home{

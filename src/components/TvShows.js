@@ -7,7 +7,7 @@ function TvShows() {
   const [series, setSeries] = useState(null);
   const [seriesCopy, setSeriesCopy] = useState(null);
   const [randomSeries, setRandomSeries] = useState(null);
-  const [rangeValue, setRangeValue] = useState(50);
+  const [rangeValue, setRangeValue] = useState(20);
 
   useEffect(() => {
     async function getData() {
@@ -86,11 +86,9 @@ function TvShows() {
   return (
     <div className="movies">
       <SearchBar btnSearch={handleSearch} />
-      <button onClick={handleRankSorting}>1 - 250</button>
-      <button onClick={handleTitleSorting}>A - Z</button>
-
-      <button onClick={handleRandomMovie}>Get a random Tv Show</button>
       <div className="sort-container">
+      <div className="range-selector">
+      <p>1</p>
         <input
           type="range"
           min="1"
@@ -98,10 +96,17 @@ function TvShows() {
           value={rangeValue}
           onChange={handleRange}
         />
+        <p>250</p>
+      </div>
+        <div className="btn-container">
+          <button onClick={handleRankSorting}>Sort by ranking</button>
+          <button onClick={handleRandomMovie}>Random Tv Show</button>
+          <button onClick={handleTitleSorting}>Sort by title</button>
+        </div>
       </div>
       {randomSeries ? (
         <>
-          <div>
+          <div className="random">
             <li className="card">
               <img src={randomSeries.image} alt="" />
               <div className="data-container">
@@ -113,7 +118,11 @@ function TvShows() {
                 </ul>
               </div>
             </li>
-            <button onClick={handleGoBack}>Go Back to full list</button>
+            <div className="go-back-container">
+              <button className="go-back" onClick={handleGoBack}>
+                Go Back to full list
+              </button>
+            </div>
           </div>
         </>
       ) : (

@@ -1,11 +1,14 @@
 .card {
     height: 200px;
+    width: 150px;
     position: relative;
-    margin: 1px;
+    margin: 5px 2px;
     box-shadow: 0 0 2px rgba(51, 51, 51, 0.25);
     transition: 0.3s;
     overflow: hidden;
     border-radius: 4px;
+    display: flex;
+    justify-content: center;
   
     &:hover {
       transform: scale(1.25);
@@ -68,4 +71,5 @@
         }
       }
     }
+    
   }

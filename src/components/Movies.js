@@ -7,7 +7,7 @@ function Movies() {
   const [movies, setMovies] = useState(null);
   const [moviesCopy, setMoviesCopy] = useState(null);
   const [randomMovies, setRandomMovies] = useState(null);
-  const [rangeValue, setRangeValue] = useState(50);
+  const [rangeValue, setRangeValue] = useState(20);
 
   useEffect(() => {
     async function getData() {
@@ -81,26 +81,33 @@ function Movies() {
 
   return (
     <div className="movies">
+   
+
       <SearchBar btnSearch={handleSearch} />
-      <div className="btn-container">
-        <button onClick={handleRankSorting}>1 - 250</button>
-        <button onClick={handleRandomMovie}>Get a random movie</button>
-        <button onClick={handleTitleSorting}>A - Z</button>
-      </div>
+   
 
       <div className="sort-container">
-        <input
-          type="range"
-          min="1"
-          max="250"
-          value={rangeValue}
-          onChange={handleRange}
-        />
+        <div className="range-selector">
+          <p>1</p>
+          <input
+            type="range"
+            min="1"
+            max="250"
+            value={rangeValue}
+            onChange={handleRange}
+          />
+          <p>250</p>
+        </div>
+        <div className="btn-container">
+          <button onClick={handleRankSorting}>Sort by ranking</button>
+          <button onClick={handleRandomMovie}>Random movie</button>
+          <button onClick={handleTitleSorting}>Sort by title</button>
+        </div>
       </div>
       {randomMovies ? (
         <>
-          <div>
-            <li className="card">
+          <div className="random">
+            <li className="card ">
               <img src={randomMovies.image} alt="" />
               <div className="data-container">
                 <ul>
@@ -111,7 +118,11 @@ function Movies() {
                 </ul>
               </div>
             </li>
-            <button onClick={handleGoBack}>Go Back to full list</button>
+            <div className="go-back-container">
+              <button className="go-back" onClick={handleGoBack}>
+                Go Back to full list
+              </button>
+            </div>
           </div>
         </>
       ) : (

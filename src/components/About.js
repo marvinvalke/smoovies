@@ -1,11 +1,23 @@
 function About() {
   return (
-    <div>
-      <h1>About</h1>
+    <div className="about">
+      <h1>About SMOOVIES:</h1>
+      <hr />
       <br />
-      <p>Lorem 60</p>
+      <p>This application helps you find a movie or a Tv Show !</p>
       <br />
-      <p>Lorem 120</p>
+      <p>Based on the Internet Movie Database, look over 250 titles ranked by their IMDb score. You can search a specific title, rank by alphabetical order or just pick a random one.</p>
+      <br />
+      <footer className="footer">
+        - 
+        <a
+          href="https://www.linkedin.com/in/marvin-valke-web-dev-fullstack/"
+          target="_blank" rel="noreferrer"
+        >
+           Marvin 
+        </a>{" "}
+        -{" "}
+      </footer>
     </div>
   );
 }
