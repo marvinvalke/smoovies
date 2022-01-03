@@ -1,4 +1,4 @@
-.navbar{
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -9,17 +9,11 @@
     z-index: 99;
     padding: 0px 20px;
 
-    a{
+    a {
         color: $color-2;
         margin: 10px;
         padding:10px;
         position: relative;
-    }
-    a:hover{
-        color: $color-1
-    }
-    
-    .active{
         &::after {
             content: "";
             border-radius: 25px;
@@ -30,11 +24,22 @@
             bottom: 1px;
             left: 50%;
             transform: translateX(-50%);
-            transition: width .2s ease-in-out;
+            width: 0%;
+            transition: width .3s ease-in-out;
+          }
+    }
+    a:hover {
+        color: $color-1
+    }
+    
+    .active { 
+        
+        &::after {
+            width: 90%;
           }
     }
 
-    .home{
+    .home {
         display: flex;
     }
 

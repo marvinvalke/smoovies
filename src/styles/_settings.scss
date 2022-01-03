@@ -40,12 +40,12 @@ a:visited {
   font-size: 1.1em;
 } */
 
-.btn-container{
+.btn-container {
   display: flex;
   justify-content: flex-end;
 }
 
-button{
+button {
   border: none;
   color: $color-1;
   margin: 0px 60px;
@@ -53,12 +53,12 @@ button{
 }
 
 
-button:hover{
+button:hover {
   color: $color-2;
   cursor:pointer;
 }
 
-.random{
+.random {
   display: flex;
   flex-direction: column;
   justify-content: center;
