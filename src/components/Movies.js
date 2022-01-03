@@ -81,31 +81,30 @@ function Movies() {
 
   return (
     <div className="movies">
-   
-
       <SearchBar btnSearch={handleSearch} />
-   
 
-      <div className="sort-container">
-        <div className="range-selector">
-          <p>1</p>
-          <input
-            type="range"
-            min="1"
-            max="250"
-            value={rangeValue}
-            onChange={handleRange}
-          />
-          <p>250</p>
-        </div>
-        <div className="btn-container">
-          <button onClick={handleRankSorting}>Sort by ranking</button>
-          <button onClick={handleRandomMovie}>Random movie</button>
-          <button onClick={handleTitleSorting}>Sort by title</button>
-        </div>
-      </div>
       {randomMovies ? (
         <>
+          <div className="sort-container">
+            <div className="range-selector">
+              <p>1</p>
+              <input
+                type="range"
+                min="1"
+                max="250"
+                value={rangeValue}
+                onChange={handleRange}
+              />
+              <p>{rangeValue}</p>
+            </div>
+            <div className="btn-container">
+              <button onClick={handleRankSorting}>Sort by ranking</button>
+              <button className="go-back" onClick={handleGoBack}>
+                Go Back to full list
+              </button>
+              <button onClick={handleTitleSorting}>Sort by title</button>
+            </div>
+          </div>
           <div className="random">
             <li className="card ">
               <img src={randomMovies.image} alt="" />
@@ -118,15 +117,28 @@ function Movies() {
                 </ul>
               </div>
             </li>
-            <div className="go-back-container">
-              <button className="go-back" onClick={handleGoBack}>
-                Go Back to full list
-              </button>
-            </div>
           </div>
         </>
       ) : (
         <>
+          <div className="sort-container">
+            <div className="range-selector">
+              <p>1</p>
+              <input
+                type="range"
+                min="1"
+                max="250"
+                value={rangeValue}
+                onChange={handleRange}
+              />
+              <p>{rangeValue}</p>
+            </div>
+            <div className="btn-container">
+              <button onClick={handleRankSorting}>Sort by ranking</button>
+              <button onClick={handleRandomMovie}>Random movie</button>
+              <button onClick={handleTitleSorting}>Sort by title</button>
+            </div>
+          </div>
           <ul className="movies-list">
             {moviesCopy.map((elem, i) => {
               return (

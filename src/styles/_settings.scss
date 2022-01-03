@@ -29,14 +29,16 @@ a {
   text-decoration: none;
   color: $color-2;
   cursor: pointer;
+  transition: color .2s ease-in-out;
 }
+
 a:visited {
   color: $color-3;
 }
 
-a:hover {
+/* a:hover {
   font-size: 1.1em;
-}
+} */
 
 .btn-container{
   display: flex;
