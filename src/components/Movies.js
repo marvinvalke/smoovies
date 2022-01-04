@@ -98,11 +98,9 @@ function Movies() {
               <p>{rangeValue}</p>
             </div>
             <div className="btn-container">
-              <button onClick={handleRankSorting}>Sort by ranking</button>
               <button className="go-back" onClick={handleGoBack}>
                 Go Back to full list
               </button>
-              <button onClick={handleTitleSorting}>Sort by title</button>
             </div>
           </div>
           <div className="random">
